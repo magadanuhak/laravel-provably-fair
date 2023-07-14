@@ -2,7 +2,6 @@
 Laravel ProvablyFair is a package that permits to generate random numbers using clientSeed - a string from frontend and serverSeed - a string from backend.
 
 <p align="center">
-<a href="https://github.com/magadanuhak/laravel-provably-fair/actions"><img src="https://github.com/magadanuhak/laravel-provably-fair/workflows/tests/badge.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/magadanuhak/laravel-provably-fair"><img src="https://img.shields.io/packagist/dt/magadanuhak/laravel-provably-fair" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/magadanuhak/laravel-provably-fair"><img src="https://img.shields.io/packagist/v/magadanuhak/laravel-provably-fair" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/magadanuhak/laravel-provably-fair"><img src="https://img.shields.io/packagist/l/magadanuhak/laravel-provably-fair" alt="License"></a>
