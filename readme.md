@@ -1,4 +1,4 @@
-#magadanuhak/laravel-provably-fair
+# magadanuhak/laravel-provably-fair
 Laravel ProvablyFair is a package that permits to generate random numbers using clientSeed - a string from frontend and serverSeed - a string from backend.
 
 If you know clientSeed, serverSeed and nonce you can generate the same random number.
