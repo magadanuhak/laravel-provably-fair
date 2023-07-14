@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Magadanuhak\ProvablyFair;
 
 use Illuminate\Support\ServiceProvider;
