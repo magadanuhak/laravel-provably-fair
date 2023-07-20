@@ -1,6 +1,13 @@
-#magadanuhak/laravel-provably-fair
+# magadanuhak/laravel-provably-fair
 
-Laravel ProvablyFair is a package that allows to generate provably random numbers using clientSeed - a string from frontend and serverSeed - a string from backend.
+Laravel ProvablyFair is a package that permits to generate random numbers using clientSeed - a string from frontend and serverSeed - a string from backend.
+
+<p align="center">
+<a href="https://packagist.org/packages/magadanuhak/laravel-provably-fair"><img src="https://img.shields.io/packagist/dt/magadanuhak/laravel-provably-fair" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/magadanuhak/laravel-provably-fair"><img src="https://img.shields.io/packagist/v/magadanuhak/laravel-provably-fair" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/magadanuhak/laravel-provably-fair"><img src="https://img.shields.io/packagist/l/magadanuhak/laravel-provably-fair" alt="License"></a>
+</p>
+
 
 If you know clientSeed, serverSeed and nonce you can generate the same random number.
 Nonce is a countable number that is used to count how much times the same clientSeed and serverSeed was used.
