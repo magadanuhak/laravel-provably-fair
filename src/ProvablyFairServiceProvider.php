@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Magadanuhak\ProvablyFair;
 
 use Illuminate\Support\ServiceProvider;
+use Magadanuhak\ProvablyFair\Contracts\ProvablyFairContract;
+use Magadanuhak\ProvablyFair\Services\ProvablyFair;
 
 class ProvablyFairServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,7 @@ class ProvablyFairServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(ProvablyFairContract::class, ProvablyFair::class);
     }
 
     /**
@@ -21,6 +23,5 @@ class ProvablyFairServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
     }
 }
