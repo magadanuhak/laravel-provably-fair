@@ -62,7 +62,7 @@ class ProvablyFair implements ProvablyFairContract
         $partOfHash = substr($hash, 0, 5);
         $decimal = hexdec($partOfHash);
 
-        return $decimal % (10000) / 100;
+        return $decimal % (1000000) / 10000;
     }
 
     public function verify(float $result, string $clientSeed, string $serverSeed, int $nonce): bool
