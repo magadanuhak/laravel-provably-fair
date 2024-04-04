@@ -12,11 +12,11 @@ class ProvablyFair implements ProvablyFairContract
 {
 
     public function __construct(
-        private int            $nonce = 0,
-        private float          $minimalValue = 0.00000001,
-        private float          $maximalValue = 100.,
+        private int $nonce = 0,
+        private float $minimalValue = 0.0001,
+        private float $maximalValue = 100.,
         public readonly string $algorithm = 'sha512',
-        public readonly int    $bytes = 6,
+        public readonly int  $bytes = 6,
     )
     {
     }
@@ -59,7 +59,7 @@ class ProvablyFair implements ProvablyFairContract
 
         $hash = hash_hmac($this->algorithm, "{$clientSeed}-{$this->nonce}", $serverSeed);
 
-        $partOfHash = substr($hash, 0, 5);
+        $partOfHash = substr($hash, 0, 13);
         $decimal = hexdec($partOfHash);
 
         return $decimal % (1000000) / 10000;
