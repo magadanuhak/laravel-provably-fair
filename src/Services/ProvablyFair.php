@@ -21,11 +21,19 @@ class ProvablyFair implements ProvablyFairContract
     {
     }
 
-    public function getRandomNumber(string $clientSeed): ProvablyFairResultData
+    /**
+     * @throws InvalidMinimalAndMaximalValuesException
+     * @throws InvalidHashHmacAlgorithmException
+     */
+    final public function getRandomNumber(string $clientSeed, ?string $serverSeed = null, ?int $nonce = null): ProvablyFairResultData
     {
-        $serverSeed = $this->getServerSeed();
+        $serverSeed = $serverSeed ?? $this->getServerSeed();
 
-        $this->nonce++;
+        if($nonce){
+            $this->nonce = $nonce;
+        } else {
+            $this->nonce++;
+        }
 
         $resultedNumber = $this->getResultUsingClientSeedAndServerSeed($clientSeed, $serverSeed);
 
@@ -65,6 +73,10 @@ class ProvablyFair implements ProvablyFairContract
         return $decimal % (1000000) / 10000;
     }
 
+    /**
+     * @throws InvalidMinimalAndMaximalValuesException
+     * @throws InvalidHashHmacAlgorithmException
+     */
     public function verify(float $result, string $clientSeed, string $serverSeed, int $nonce): bool
     {
         $resultedNumber = $this->getResultUsingClientSeedAndServerSeed(clientSeed: $clientSeed, serverSeed: $serverSeed);
