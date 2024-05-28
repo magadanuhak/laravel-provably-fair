@@ -62,7 +62,8 @@ class GetRandomWeapon {
 
         $provablyFairService = new ProvablyFair(); //Initialization of provably fair
         $clientSeed = $request->client_seed; // Client seed is a string that you should get from frontend
-        $resultedData = $provablyFairService->getRandomNumber($clientSeed); // This method will return an object ProvablyFairResultData
+        $resultedData = $provablyFairService->getRandomNumber($clientSeed);  // This method will return an object ProvablyFairResultData
+//      $resultedData = $provablyFairService->getRandomNumber($clientSeed, $serverSeed, $nonce);  // $serverSeed, $nonce are optionally This method will return an object ProvablyFairResultData
 
         $choice = $resultedData->resultedNumber;
 
@@ -91,7 +92,7 @@ class GetRandomWeapon {
 By defaul `ProvablyFair::class` is binded to `ProvablyFairContract::class`
 You can use Laravel Service Container Dependency Injection to use ProvablyFair in your Laravel project
 ```php
-class GetRandomItemByChance{
+class GetRandomItemByChance {
     
     public function __construct(
         ProvablyFairContract $provablyFair

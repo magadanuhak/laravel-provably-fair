@@ -4,19 +4,18 @@ namespace Magadanuhak\ProvablyFair\Services;
 
 use Magadanuhak\ProvablyFair\Contracts\ProvablyFairContract;
 use Magadanuhak\ProvablyFair\Data\ProvablyFairResultData;
-use Illuminate\Support\Str;
 use Magadanuhak\ProvablyFair\Exceptions\InvalidHashHmacAlgorithmException;
 use Magadanuhak\ProvablyFair\Exceptions\InvalidMinimalAndMaximalValuesException;
 
-class ProvablyFair implements ProvablyFairContract
+final class ProvablyFair implements ProvablyFairContract
 {
 
     public function __construct(
-        private int $nonce = 0,
-        private float $minimalValue = 0.0001,
-        private float $maximalValue = 100.,
+        private int            $nonce = 0,
+        private readonly float $minimalValue = 0.0001,
+        private readonly float $maximalValue = 100.,
         public readonly string $algorithm = 'sha512',
-        public readonly int  $bytes = 6,
+        public readonly int    $bytes = 6,
     )
     {
     }
@@ -25,11 +24,11 @@ class ProvablyFair implements ProvablyFairContract
      * @throws InvalidMinimalAndMaximalValuesException
      * @throws InvalidHashHmacAlgorithmException
      */
-    final public function getRandomNumber(string $clientSeed, ?string $serverSeed = null, ?int $nonce = null): ProvablyFairResultData
+    public function getRandomNumber(string $clientSeed, ?string $serverSeed = null, ?int $nonce = null): ProvablyFairResultData
     {
         $serverSeed = $serverSeed ?? $this->getServerSeed();
 
-        if($nonce){
+        if ($nonce) {
             $this->nonce = $nonce;
         } else {
             $this->nonce++;
@@ -49,12 +48,16 @@ class ProvablyFair implements ProvablyFairContract
 
     private function getServerSeed(): string
     {
-        $str = rand();
+        $str = mt_rand();
 
         return sha1($str);
     }
 
 
+    /**
+     * @throws InvalidMinimalAndMaximalValuesException
+     * @throws InvalidHashHmacAlgorithmException
+     */
     private function getResultUsingClientSeedAndServerSeed(string $clientSeed, string $serverSeed): float
     {
         if (!in_array($this->algorithm, hash_hmac_algos())) {
@@ -81,6 +84,6 @@ class ProvablyFair implements ProvablyFairContract
     {
         $resultedNumber = $this->getResultUsingClientSeedAndServerSeed(clientSeed: $clientSeed, serverSeed: $serverSeed);
 
-        return bccomp("{$result}", "{$resultedNumber}", 6) == 0;
+        return bccomp((string)($result), (string)($resultedNumber), 6) == 0;
     }
 }
